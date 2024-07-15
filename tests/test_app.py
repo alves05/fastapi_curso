@@ -20,7 +20,6 @@ def test_create_user(client):
 
     # voltou o status code correto?
     assert response.status_code == HTTPStatus.CREATED
-
     # validar UserPulic
     assert response.json() == {
         'username': 'testeusername',
@@ -33,7 +32,6 @@ def test_read_users(client):
     response = client.get('/users/')
 
     assert response.status_code == HTTPStatus.OK
-
     assert response.json() == {
         'users': [
             {
@@ -56,6 +54,7 @@ def test_update_user(client):
         },
     )
 
+    assert response.status_code == HTTPStatus.OK
     assert response.json() == {
         'username': 'testusername2',
         'email': 'test@test.com',
@@ -66,4 +65,5 @@ def test_update_user(client):
 def test_delete_user(client):
     response = client.delete('/users/1')
 
+    assert response.status_code == HTTPStatus.OK
     assert response.json() == {'message': 'User deleted'}

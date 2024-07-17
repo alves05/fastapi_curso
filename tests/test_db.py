@@ -4,17 +4,10 @@ from fastapi_curso.models import User
 
 
 def test_create_user(session):
-    user = User(
-        username='usertest',
-        email='usertest@email.com',
-        password='passwordtest',
-    )
-
-    session.add(user)
+    new_user = User(username='alice', password='secret', email='teste@test')
+    session.add(new_user)
     session.commit()
 
-    result = session.scalar(
-        select(User).where(User.email == 'usertest@email.com')
-    )
+    user = session.scalar(select(User).where(User.username == 'alice'))
 
-    assert result.username == 'usertest'
+    assert user.username == 'alice'

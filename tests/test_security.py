@@ -2,7 +2,7 @@ from http import HTTPStatus
 
 from jwt import decode
 
-from fastapi_curso.security import Settings, create_access_token
+from fastapi_curso.security import create_access_token, settings
 
 
 def test_jwt():
@@ -10,7 +10,7 @@ def test_jwt():
     token = create_access_token(data)
 
     decoded = decode(
-        token, Settings.SECRET_KEY, algorithms=[Settings.ALGORITHM]
+        token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM]
     )
 
     assert decoded['test'] == data['test']

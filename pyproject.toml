@@ -40,7 +40,7 @@ quote-style = 'single'
 [tool.taskipy.tasks]
 run = 'fastapi dev fastapi_curso/app.py'
 pre_test = 'task lint'
-test = 'pytest -s -x --cov=fastapi_curso -vv'
+test = 'pytest --cov=fastapi_curso -vv'
 post_test = 'coverage html'
 lint = 'ruff check . && ruff check . --diff'
 format = 'ruff check . --fix && ruff format .'

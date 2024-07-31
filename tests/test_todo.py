@@ -176,7 +176,7 @@ def test_patch_todo(session, client, user, token):
     response = client.patch(
         f'/todos/{todo.id}',
         json={'title': 'teste!'},
-        headers={'Authorization': f'Bearer {token}'}
+        headers={'Authorization': f'Bearer {token}'},
     )
 
     assert response.status_code == HTTPStatus.OK
